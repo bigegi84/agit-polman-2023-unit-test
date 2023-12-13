@@ -19,6 +19,13 @@ public class TodoServiceTests
         _todoRepository = new Mock<ITodoRepository>();
         _todoService = new TodoService(_todoRepository.Object);
     }
+
+    [Test]
+    public void HelloWorld()
+    {
+        Assert.That(_todoService.HelloWorld(), Is.EqualTo("Hello World"));
+    }
+
     [Test]
     [TestCase(1,1)]
     [TestCase(1,2)]
@@ -26,7 +33,6 @@ public class TodoServiceTests
     [TestCase(2,2)]
     public void Penambahan(int x, int y)
     {
-        _todoRepository.
         Assert.That(_todoService.Penambahan(x, y), Is.EqualTo(x+y));
     }
 

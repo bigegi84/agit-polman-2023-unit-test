@@ -10,6 +10,28 @@ namespace ApiTestDemo.IntegrationTests.Api;
 [TestFixture]
 public class TodoControllerTests : ApiIntegrationTestFixture
 {
+
+    [Test]
+    public async Task Get_Valid_HelloWorld()
+    {
+
+        var httpResponseMessage = await HttpClient.GetAsync("api/todos/HelloWorld");
+        var body = await httpResponseMessage.Content.ReadAsStringAsync();
+        JObject json = JObject.Parse(body);
+
+        Assert.That((string)json["result"], Is.EqualTo("Hello World"));
+    }
+
+    [Test]
+    public async Task Get_Invalid_HelloWorld()
+    {
+
+        var httpResponseMessage = await HttpClient.GetAsync("api/todos/HelloWorld");
+        var body = await httpResponseMessage.Content.ReadAsStringAsync();
+        JObject json = JObject.Parse(body);
+
+        Assert.That((string)json["result"], Is.Not.EqualTo("Wrong"));
+    }
     [Test]
     public async Task Get_Valid_Penambahan()
     {
@@ -22,26 +44,6 @@ public class TodoControllerTests : ApiIntegrationTestFixture
         JObject json = JObject.Parse(body);
 
         Assert.That((string)json["result"], Is.EqualTo("2"));
-    }
-    [Test]
-    public async Task Get_Valid_HelloWorld()
-    {
-        
-        var httpResponseMessage = await HttpClient.GetAsync("api/todos/HelloWorld");
-        var body = await httpResponseMessage.Content.ReadAsStringAsync();
-        JObject json = JObject.Parse(body);
-
-        Assert.That((string)json["value"]["message"], Is.EqualTo("Hello World"));
-    }
-    [Test]
-    public async Task Get_Invalid_HelloWorld()
-    {
-
-        var httpResponseMessage = await HttpClient.GetAsync("api/todos/HelloWorld");
-        var body = await httpResponseMessage.Content.ReadAsStringAsync();
-        JObject json = JObject.Parse(body);
-
-        Assert.That((string)json["value"]["message"], Is.Not.EqualTo("Wrong"));
     }
     //[Test]
     //public async Task Get_Invalid_HelloWorld()

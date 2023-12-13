@@ -12,6 +12,10 @@ public class TodoService : ITodoService
     {
         _todoRepository = todoRepository;
     }
+    public string HelloWorld()
+    {
+        return "Hello World";
+    }
 
     public int Penambahan(int x, int y)
     {

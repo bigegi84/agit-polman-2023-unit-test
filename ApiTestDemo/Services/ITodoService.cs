@@ -6,9 +6,10 @@ namespace ApiTestDemo.Services;
 
 public interface ITodoService
 {
+    string HelloWorld();
+    int Penambahan(int x, int y);
+
     Task<TodoDto> AddAsync(TodoForCreationDto todoForCreationDto);
     
     Task<TodoDto?> GetByIdAsync(long id);
-    //JsonResult HelloWorld();
-    int Penambahan(int x, int y);
 }

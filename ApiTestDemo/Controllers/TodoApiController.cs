@@ -15,6 +15,17 @@ public class TodoApiController : Controller
     {
         _todoService = todoService;
     }
+
+    [HttpGet("HelloWorld")]
+    public JsonResult HelloWorld()
+    {
+        return Json(new
+        {
+            status = "ok",
+            result = _todoService.HelloWorld()
+        });
+    }
+
     [HttpPost("Penambahan")]
     public JsonResult Penambahan([FromBody] PenambahanDto dto)
     {
@@ -23,15 +34,6 @@ public class TodoApiController : Controller
             status = "ok",
             result = _todoService.Penambahan(dto.x, dto.y)
         });
-    }
-    [HttpGet("HelloWorld")]
-    public ActionResult HelloWorld()
-    {
-        return Ok(Json(new
-        {
-            status = "ok",
-            message = "Hello World"
-        }));
     }
 
     [HttpGet("{id:long}")]
