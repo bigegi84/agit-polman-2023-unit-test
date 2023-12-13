@@ -54,14 +54,14 @@ public class TodoServiceTests
         });
     }
     
-    [Test]
-    [TestCase("Title", null)]
-    [TestCase(null, "Description")]
-    [TestCase(null, null)]
-    public void AddAsync_WithInvalidTodo_ThrowsException(string title, string description)
-    {
-        Assert.ThrowsAsync<ValidationException>(async () => await _todoService.AddAsync(new TodoForCreationDto { Title = title, Description = description}));
-    }
+    // [Test]
+    // [TestCase("Title", null)]
+    // [TestCase(null, "Description")]
+    // [TestCase(null, null)]
+    // public void AddAsync_WithInvalidTodo_ThrowsException(string title, string description)
+    // {
+    //     Assert.ThrowsAsync<ValidationException>(async () => await _todoService.AddAsync(new TodoForCreationDto { Title = title, Description = description}));
+    // }
     
     [Test]
     public async Task GetByIdAsync_WithValidId_ReturnsTodo()

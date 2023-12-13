@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C#: ApiTestDemo [Default Configuration]",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\ApiTestDemo\\ApiTestDemo.csproj"
+        },
+        {
+            "name": "C#: ApiTestDemo.IntegrationTests",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\ApiTestDemo.IntegrationTests\\ApiTestDemo.IntegrationTests.csproj",
+            "launchConfigurationId": "TargetFramework=;ApiTestDemo.IntegrationTests"
+        }
+    ]
+}

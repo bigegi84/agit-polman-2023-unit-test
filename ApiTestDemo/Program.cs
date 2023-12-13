@@ -9,9 +9,9 @@ public class Program
 {
     protected Program()
     {
-        
+
     }
-    
+
     public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
@@ -28,16 +28,16 @@ public class Program
 
         builder.Services.AddTransient<ITodoRepository, TodoRepository>();
         builder.Services.AddTransient<ITodoService, TodoService>();
-        
+
         var app = builder.Build();
-        
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-        
+
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
