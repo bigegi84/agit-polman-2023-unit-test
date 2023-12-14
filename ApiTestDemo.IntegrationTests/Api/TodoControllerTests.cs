@@ -32,11 +32,25 @@ public class TodoControllerTests : ApiIntegrationTestFixture
 
         Assert.That((string)json["result"], Is.Not.EqualTo("Wrong"));
     }
+    //[Test]
+    //public async Task Get_Valid_Penambahan()
+    //{
+
+    //    var httpResponseMessage = await HttpClient.PostAsJsonAsync("api/todos/Penambahan", new {
+    //        x = 1,
+    //        y = 1
+    //    });
+    //    var body = await httpResponseMessage.Content.ReadAsStringAsync();
+    //    JObject json = JObject.Parse(body);
+
+    //    Assert.That((string)json["result"], Is.EqualTo("2"));
+    //}
     [Test]
-    public async Task Get_Valid_Penambahan()
+    public async Task Get_Invalid_Penambahan()
     {
 
-        var httpResponseMessage = await HttpClient.PostAsJsonAsync("api/todos/Penambahan", new PenambahanDto {
+        var httpResponseMessage = await HttpClient.PostAsJsonAsync("api/todos/Penambahan", new
+        {
             x = 1,
             y = 1
         });
@@ -44,6 +58,20 @@ public class TodoControllerTests : ApiIntegrationTestFixture
         JObject json = JObject.Parse(body);
 
         Assert.That((string)json["result"], Is.EqualTo("2"));
+    }
+    [Test]
+    public async Task Get_Pengurangan_Valid()
+    {
+
+        var httpResponseMessage = await HttpClient.PostAsJsonAsync("api/todos/Pengurangan", new
+        {
+            x = 1,
+            y = 1
+        });
+        var body = await httpResponseMessage.Content.ReadAsStringAsync();
+        JObject json = JObject.Parse(body);
+
+        Assert.That((string)json["result"], Is.EqualTo("0"));
     }
     //[Test]
     //public async Task Get_Invalid_HelloWorld()

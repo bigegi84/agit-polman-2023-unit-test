@@ -29,10 +29,30 @@ public class TodoApiController : Controller
     [HttpPost("Penambahan")]
     public JsonResult Penambahan([FromBody] PenambahanDto dto)
     {
+        if (dto.x == null) return Json(new
+        {
+            status = "fail",
+            result = "x not found"
+        });
+        if (dto.y==null) return Json(new
+        {
+            status = "fail",
+            result = "y not found"
+        });
         return Json(new
         {
             status = "ok",
-            result = _todoService.Penambahan(dto.x, dto.y)
+            result = _todoService.Penambahan(dto.x.GetValueOrDefault(), dto.y.GetValueOrDefault())
+        });
+    }
+
+    [HttpPost("Pengurangan")]
+    public JsonResult Pengurangan([FromBody] PenambahanDto dto)
+    {
+        return Json(new
+        {
+            status = "ok",
+            result = _todoService.Pengurangan(dto.x.GetValueOrDefault(), dto.y.GetValueOrDefault())
         });
     }
 

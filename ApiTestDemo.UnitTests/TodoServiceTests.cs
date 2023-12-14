@@ -37,6 +37,16 @@ public class TodoServiceTests
     }
 
     [Test]
+    [TestCase(1, 1)]
+    [TestCase(1, 2)]
+    [TestCase(2, 1)]
+    [TestCase(2, 2)]
+    public void Pengurangan(int x, int y)
+    {
+        Assert.That(_todoService.Pengurangan(x, y), Is.EqualTo(x - y));
+    }
+
+    [Test]
     public async Task AddAsync_WithValidTodo_ReturnsTodo()
     {
         var todo = new Todo { Id = 1, Title = "Title", Description = "Description", IsCompleted = false };
