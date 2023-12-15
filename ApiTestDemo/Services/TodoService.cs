@@ -25,6 +25,10 @@ public class TodoService : ITodoService
     {
         return x - y;
     }
+    public int Pembagian(int x, int y)
+    {
+        return x / y;
+    }
 
     public async Task<TodoDto> AddAsync(TodoForCreationDto todoForCreationDto)
     {

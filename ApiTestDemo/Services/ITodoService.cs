@@ -9,6 +9,7 @@ public interface ITodoService
     string HelloWorld();
     int Penambahan(int x, int y);
     int Pengurangan(int x, int y);
+    int Pembagian(int x, int y);
 
     Task<TodoDto> AddAsync(TodoForCreationDto todoForCreationDto);
     

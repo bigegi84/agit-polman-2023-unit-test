@@ -42,17 +42,26 @@ public class TodoApiController : Controller
         return Json(new
         {
             status = "ok",
-            result = _todoService.Penambahan(dto.x.GetValueOrDefault(), dto.y.GetValueOrDefault())
+            result = _todoService.Penambahan(dto.x, dto.y)
         });
     }
 
     [HttpPost("Pengurangan")]
-    public JsonResult Pengurangan([FromBody] PenambahanDto dto)
+    public JsonResult Pengurangan([FromBody] PenguranganDto dto)
     {
         return Json(new
         {
             status = "ok",
             result = _todoService.Pengurangan(dto.x.GetValueOrDefault(), dto.y.GetValueOrDefault())
+        });
+    }
+    [HttpPost("Pembagian")]
+    public JsonResult Pembagian([FromBody] PembagianDto dto)
+    {
+        return Json(new
+        {
+            status = "ok",
+            result = _todoService.Pembagian(dto.x.GetValueOrDefault(), dto.y.GetValueOrDefault())
         });
     }
 

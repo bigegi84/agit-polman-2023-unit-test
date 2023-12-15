@@ -14,7 +14,6 @@ public class TodoControllerTests : ApiIntegrationTestFixture
     [Test]
     public async Task Get_Valid_HelloWorld()
     {
-
         var httpResponseMessage = await HttpClient.GetAsync("api/todos/HelloWorld");
         var body = await httpResponseMessage.Content.ReadAsStringAsync();
         JObject json = JObject.Parse(body);
@@ -60,7 +59,7 @@ public class TodoControllerTests : ApiIntegrationTestFixture
         Assert.That((string)json["result"], Is.EqualTo("2"));
     }
     [Test]
-    public async Task Get_Pengurangan_Valid()
+    public async Task Post_Pengurangan_Valid()
     {
 
         var httpResponseMessage = await HttpClient.PostAsJsonAsync("api/todos/Pengurangan", new
@@ -73,16 +72,51 @@ public class TodoControllerTests : ApiIntegrationTestFixture
 
         Assert.That((string)json["result"], Is.EqualTo("0"));
     }
-    //[Test]
-    //public async Task Get_Invalid_HelloWorld()
-    //{
+    [Test]
+    [TestCase(null, null)]
+    [TestCase(1, null)]
+    [TestCase(null, 1)]
+    public async Task Post_Pengurangan_Invalid(int? x, int? y)
+    {
 
-    //    var httpResponseMessage = await HttpClient.GetAsync("api/todos/HelloWorld");
-    //    var body = await httpResponseMessage.Content.ReadAsStringAsync();
-    //    JObject json = JObject.Parse(body);
+        var httpResponseMessage = await HttpClient.PostAsJsonAsync("api/todos/Pengurangan", new
+        {
+            x, y
+        });
+        Console.WriteLine(httpResponseMessage.ToString());
+        Assert.That(httpResponseMessage.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
+    }
+    [Test]
+    public async Task Post_Pembagian_Valid()
+    {
 
-    //    Assert.That("Wrong", Is.EqualTo((string)json["message"]));
-    //}
+        var httpResponseMessage = await HttpClient.PostAsJsonAsync("api/todos/Pembagian", new
+        {
+            x = 1,
+            y = 1
+        });
+        var body = await httpResponseMessage.Content.ReadAsStringAsync();
+        JObject json = JObject.Parse(body);
+        Console.WriteLine((string)json["result"]);
+        Assert.That((string)json["result"], Is.EqualTo("1"));
+    }
+    [Test]
+    [TestCase(null, null)]
+    [TestCase(1, null)]
+    [TestCase(null, 1)]
+    public async Task Post_Pembagian_Invalid(int? x, int? y)
+    {
+
+        var httpResponseMessage = await HttpClient.PostAsJsonAsync("api/todos/Pembagian", new
+        {
+            x,
+            y
+        });
+        Console.WriteLine(httpResponseMessage.ToString());
+        Assert.That(httpResponseMessage.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
+    }
+
+    //
     [Test]
     public async Task Post_ValidTodo_Returns201Created()
     {

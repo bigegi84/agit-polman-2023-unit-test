@@ -45,6 +45,15 @@ public class TodoServiceTests
     {
         Assert.That(_todoService.Pengurangan(x, y), Is.EqualTo(x - y));
     }
+    [Test]
+    [TestCase(1, 1)]
+    [TestCase(1, 2)]
+    [TestCase(2, 1)]
+    [TestCase(2, 2)]
+    public void Pembagian(int x, int y)
+    {
+        Assert.That(_todoService.Pembagian(x, y), Is.EqualTo(x / y));
+    }
 
     [Test]
     public async Task AddAsync_WithValidTodo_ReturnsTodo()
